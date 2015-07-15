@@ -37,11 +37,13 @@ function init(){
 				$('.arrow').css('display','none');
 				$('#aboutContent').fadeTo(300,1);
 				$('#aboutContent').css('zIndex',1000);
+				$(this).html("zp&#283;t");
 			} else {
 				$(getCurrentId()).fadeTo(300,1);
 				$('.arrow').css('display','block');
 				$('#aboutContent').fadeTo(200,0);
 				$('#aboutContent').css('zIndex',-1);
+				$(this).html("O autorovi");
 			}
 	});
 	// createAvailableContent();
@@ -118,7 +120,7 @@ function createContent(){
 	aboutContent.append('<img id="aboutImage" src="pics/aboutImage.png">');
 	aboutContent.append(aboutText);
 	aboutContent.height(height-20);
-	aboutContent.css('overflow','scroll');
+	// aboutContent.css('overflow','auto');
 	$('body').append(aboutContent);
 	$('#aboutContent').offset({left: width/2 - $('#aboutContent').outerWidth()/2 });
 	// $('#aboutContent').css('display','none');

@@ -3,6 +3,7 @@ body {
 	background-color: #fff;
 	margin: 0px;
 	padding: 0px;
+	overflow:hidden;
 }
 p {
 	margin: 0px;
@@ -78,6 +79,8 @@ p {
 	font-weight: 400;
 	z-index: -1;
 	opacity: 0;
+	overflow-y: auto;
+	overflow-x: auto;
 }
 
 #aboutContent p {
