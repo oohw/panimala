@@ -117,13 +117,19 @@ function createContent(){
 	$('body').append(about);
 
 	var aboutContent = $('<div id="aboutContent"></div>');
-	aboutContent.append('<img id="aboutImage" src="pics/aboutImage.png">');
-	aboutContent.append(aboutText);
-	aboutContent.height(height-20);
+	var aboutInner = $('<div id="aboutInner"></div>');
+	aboutInner.append('<img id="aboutImage" src="pics/aboutImage.png">');
+	aboutInner.append(aboutText);
+	aboutInner.height(height-20);
 	// aboutContent.css('overflow','auto');
 	$('body').append(aboutContent);
-	$('#aboutContent').offset({left: width/2 - $('#aboutContent').outerWidth()/2 });
-	// $('#aboutContent').css('display','none');
+	$('#aboutContent').append(aboutInner);
+	$('#aboutInner').offset({left: width/2 - $('#aboutInner').outerWidth()/2 });
+
+	var info = $('<div class="info"></div>');
+	$(info).append('<p class="big">kontakt</p>');
+	$(info).append('<p>Ale&#353; Mal&yacute;</p><p> Dubenec 156<br>544 55 Dubenec</p><p>e-mail: maly.ales@tiscali.cz</p>');
+	$('#aboutContent').append(info);
 
 	var rang = $('<div id="rang" class="arrow">&rang;</div>');
 	var lang = $('<div id="lang" class="arrow">&lang;</div>');
