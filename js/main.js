@@ -98,12 +98,12 @@ function createContent(){
 		} else {
 			$(info).append('<p class="big">' + json[i]["price"] + '</p>');
 		}
-		$(info).append('<p>'+json[i]["comment"] + '</p>');
-		$(info).append('<p>' + json[i]["size"] + '<br>' + json[i]["technique"] + '</p>');
+		$(info).append('<p>'+htmlEntify(json[i]["comment"]) + '</p>');
+		$(info).append('<p>' + json[i]["size"] + '<br>' + htmlEntify(json[i]["technique"]) + '</p>');
 		$('#' + id).append(info);
 
 		var name = $('<div id="name' + json[i]["id"] + '" class="name"></div>');
-		$(name).append('<p><nobr>' + json[i]["name"] + '</nobr></p>');
+		$(name).append('<p><nobr>' + htmlEntify(json[i]["name"]) + '</nobr></p>');
 		$('#' + id).append(name);
 		$('#name'+json[i]["id"]).offset({
         	left : width/2 - $('#name'+json[i]["id"]).outerWidth()/2
@@ -137,6 +137,12 @@ function createContent(){
 	$('body').append(lang);
 	$('.arrow').offset({top: height/2 - 60 });
 	$('.arrow').fadeTo(0,0);
+}
+
+function htmlEntify(text){
+	return text.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+   		return '&#'+i.charCodeAt(0)+';';
+	});
 }
 
 function next(direction){
@@ -183,7 +189,7 @@ function increment(direction){
 	currentPic = nextPic(direction);
 }
 
-var aboutText = '<p><span class="big">Motto</span></p><p><span class="liste">\"Paní Malá, on ten Alešek hezky kreslí, skoro bych řekla, že by se zde dalo mluvit o talentu...ale když on to nakonec vždycky něčím tak zvorá!\"</span></p><p style="text-align:right; margin-top:-15px; margin-right:40px;">(rok 1969, paní učitelka 1. třídy Marie Lacinová).</p><p>Aleš Malý, nar. 5. 10. 1962 v Jablonci nad Nisou</p><p>studia<br><span class="list">1978 – 1981 	SUPŠ Jablonec nad Nisou, obor rytec kovu<br>1982 – 1986	PF Ústí nad Labem, obor 1. st. ZŠ se zaměřením na Vv<br>1990 – 1994	PF Ústí nad Labem, obor Vv pro 2. a 3. st.</span></p><p>V současné době působí autor jako vesnický učitel v Dubenci u Dvora Králové nad Labem. Duchovním snažením se celoživotně pohybuje na průsečíku křesťanské mystiky a jógové filozofie. Je zcela fascinován projevem božské tvůrčí síly v přírodě.</p>';
+var aboutText = '<p><span class="big">Motto</span></p><p><span class="liste">\"' + htmlEntify('Paní Malá, on ten Alešek hezky kreslí, skoro bych řekla, že by se zde dalo mluvit o talentu...ale když on to nakonec vždycky něčím tak zvorá!\"') + '</span></p><p style="text-align:right; margin-top:-15px; margin-right:40px;">' + htmlEntify('(rok 1969, paní učitelka 1. třídy Marie Lacinová).') + '</p><p>' + htmlEntify('Aleš Malý, nar. 5. 10. 1962 v Jablonci nad Nisou') + '</p><p>studia<br><span class="list">' + htmlEntify('1978 – 1981 	SUPŠ Jablonec nad Nisou, obor rytec kovu') + '<br>' + htmlEntify('1982 – 1986	PF Ústí nad Labem, obor 1. st. ZŠ se zaměřením na Vv') + '<br>' + htmlEntify('1990 – 1994	PF Ústí nad Labem, obor Vv pro 2. a 3. st.') + '</span></p><p>' + htmlEntify('V současné době působí autor jako vesnický učitel v Dubenci u Dvora Králové nad Labem. Duchovním snažením se celoživotně pohybuje na průsečíku křesťanské mystiky a jógové filozofie. Je zcela fascinován projevem božské tvůrčí síly v přírodě.') + '</p>';
 
 
 
