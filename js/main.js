@@ -19,10 +19,10 @@ function init(){
 	$('.content').css('display','none');
 	$(getCurrentId()).css('display','block');
 	$('#rang').click(function(){
-		next(1);
+		next(-1);
 	});
 	$('#lang').click(function(){
-		next(-1);
+		next(1);
 	});
 	$('.arrow').mouseover(function(){
 		$(this).fadeTo(300,1);
@@ -178,7 +178,7 @@ function getCurrentId(){
 }
 
 function nextPic(direction){
-	if(direction == 1){
+	if(direction == -1){
 		return (currentPic+1)%json.length;
 	} else {
 		return (currentPic-1+json.length)%json.length;
