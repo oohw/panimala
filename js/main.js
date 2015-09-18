@@ -19,10 +19,10 @@ function init(){
 	$('.content').css('display','none');
 	$(getCurrentId()).css('display','block');
 	$('#rang').click(function(){
-		next(-1);
+		next(1);
 	});
 	$('#lang').click(function(){
-		next(1);
+		next(-1);
 	});
 	$('.arrow').mouseover(function(){
 		$(this).fadeTo(300,1);
