@@ -9,6 +9,7 @@
     <script src="js/jquery-2.1.3.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <title>ertoiuoi</title>
 </head><body>
 <script>
 <?php 

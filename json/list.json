@@ -1,4 +1,6 @@
-[{"id":1,"name":"První trnka","technique":"olej na dřevě","size":"75 x 75","comment":"S hlavou zabořenou do rozkvetlého keře posvátně zírám a bojím se o oči.","price":"archiv"},
+[{"id":56,"name":"Trnka 3","technique":"suchá jehla","size":"14 x 19","comment":".","price":"900,-"},
+{"id":57,"name":"Ječmeny","technique":"olej na sololitu","size":"80 x 120","comment":".","price":"6500,-"},
+{"id":1,"name":"První trnka","technique":"olej na dřevě","size":"75 x 75","comment":"S hlavou zabořenou do rozkvetlého keře posvátně zírám a bojím se o oči.","price":"archiv"},
 {"id":2,"name":"Velký var","technique":"olej na hobře","size":"112 x 112","comment":"Chvilková ztráta fyzického tělesného pocitu.","price":"archiv"},
 {"id":3,"name":"Boží","technique":"olej na sololitu","size":"50 x 110","comment":"Toto vzniklo velmi rychle a velmi samo. Tak by to mělo být...","price":"archiv"},
 {"id":4,"name":"Brána","technique":"olej na sololitu","size":"122 x 122","comment":"Zvláštní vize při průchodu dveřmi na transfúzním oddělení.","price":"archiv"},
