@@ -55,7 +55,79 @@ p {
 	top: 20px;
 	left: 60px;
 }
+#overview {
+	position: absolute;
+	color: #000;
+	font-size: 20px;
+	font-weight: 600;
+	bottom: 20px;
+	right: 60px;
+	cursor: pointer;
+	z-index: 1000;
+}
+#overview:hover {
+	text-decoration: underline;
+}
 
+#overviewContent {
+	position: absolute;
+	left:0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	color: #000;
+	font-size: 14px;
+	font-weight: 400;
+	z-index: -1;
+	opacity: 0;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	pointer-events: none;
+}
+#overviewInner {
+	position: absolute;
+	top: 60px;
+	width: 100%;
+	color: #000;
+	font-size: 14px;
+	font-weight: 400;
+	overflow-y: auto;
+	overflow-x: auto;
+	pointer-events: auto;
+	padding-top:30px;
+	padding-bottom:560px;
+}
+.overviewImages {
+	width: 100px;
+	height: 100px;
+	background-color:#f0f;
+	border: #fff solid 5px;
+	float:left;
+	position: relative;
+	-webkit-box-shadow: 10px 10px 67px -20px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 67px -20px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 67px -20px rgba(0,0,0,0.75);
+	cursor: pointer;
+	/*margin:20px;*/
+}
+.gradient {
+	background-repeat: repeat-x;
+	background-image: url('../utils/gradient.png');
+	height: 15px;
+	width: 100%;
+}
+#gradientBottom {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	z-index:500;
+}
+#gradientTop {
+	position:absolute;
+	top:60px;
+	left:0px;
+	z-index:500;
+}
 #about {
 	position: absolute;
 	color: #000;
@@ -68,7 +140,6 @@ p {
 }
 #about:hover {
 	text-decoration: underline;
-
 }
 #aboutContent {
 	position: absolute;
@@ -139,4 +210,12 @@ p {
 }
 #lang {
 	left: 20px;
+}
+.flipV {
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        filter: FlipV;
+        -ms-filter: "FlipV";
 }

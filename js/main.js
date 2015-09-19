@@ -34,6 +34,8 @@ function init(){
 		if(!interactionClosed)
 			if( $(getCurrentId()).css('opacity') > 0 ){
 				$(getCurrentId()).fadeTo(200,0);
+				$('#overviewContent').fadeTo(200,0);
+				$('#overviewContent').css('zIndex',-1);
 				$('.arrow').css('display','none');
 				$('#aboutContent').fadeTo(300,1);
 				$('#aboutContent').css('zIndex',1000);
@@ -44,6 +46,25 @@ function init(){
 				$('#aboutContent').fadeTo(200,0);
 				$('#aboutContent').css('zIndex',-1);
 				$(this).html("O autorovi");
+			}
+	});
+
+	$('#overview').click(function(){
+		if(!interactionClosed)
+			if( $(getCurrentId()).css('opacity') > 0 ){
+				$(getCurrentId()).fadeTo(200,0);
+				$('#aboutContent').fadeTo(200,0);
+				$('#aboutContent').css('zIndex',-1);
+				$('.arrow').css('display','none');
+				$('#overviewContent').fadeTo(300,1);
+				$('#overviewContent').css('zIndex',1000);
+				$(this).html("zp&#283;t");
+			} else {
+				$(getCurrentId()).fadeTo(300,1);
+				$('.arrow').css('display','block');
+				$('#overviewContent').fadeTo(200,0);
+				$('#overviewContent').css('zIndex',-1);
+				$(this).html("overfew");
 			}
 	});
 	// createAvailableContent();
@@ -75,7 +96,38 @@ function layout(){
 }
 
 function createContent(){
+
+	var overview = $('<div id="overview">overfew</div>');
+	$('body').append(overview);
+
+	var overviewContent = $('<div id="overviewContent"></div>');
+	var overviewInner = $('<div id="overviewInner"></div>');
+	$('body').append(overviewContent);
+	$('#overviewContent').height(height-60);
+	$('#overviewContent').append(overviewInner);
+	$('#overviewInner').height(height-60);
+	// aboutContent.css('overflow','auto');
+	$('#overviewInner').offset({left: width/2 - $('#overviewInner').outerWidth()/2 });
+	var gradientB = $('<div id="gradientBottom" class="gradient"></div>')
+	$('#overviewContent').append(gradientB);
+	var gradientT = $('<div id="gradientTop" class="gradient flipV"></div>')
+	$('#overviewContent').append(gradientT);
+
 	for(var i = 0; i < json.length; i++){
+		var overviewImage = $('<div id="overviewImage' + json[i]["id"] + '" data-index="'+i+'" class="overviewImages"><img class="paintingOverview" id="overview-pic-' + json[i]["id"] + '" src="pics/prev/' + json[i]["id"] + '.jpg"' + '></div>');
+		var ratioO = json[i]["prevsize"][0] > json[i]["prevsize"][1] ? json[i]["prevsize"][1] / json[i]["prevsize"][0] : json[i]["prevsize"][0] / json[i]["prevsize"][1];
+		var wO = json[i]["prevsize"][0] > json[i]["prevsize"][1] ? 100 : 100 * ratioO;
+		var hO = json[i]["prevsize"][0] > json[i]["prevsize"][1] ? 100 * ratioO : 100;
+		var _leftO = ( 100 - wO ) * 0.5;
+		var _topO = ( 100 - hO ) * 0.5;
+		$("#overviewInner").append(overviewImage);
+		$('#overviewImage' + json[i]["id"]).outerWidth(wO);
+		$('#overviewImage' + json[i]["id"]).outerHeight(hO);
+		$('#overview-pic-' + json[i]["id"]).outerWidth(wO-10);
+		$('#overview-pic-' + json[i]["id"]).outerHeight(hO-10);
+		// $('#overviewImage' + json[i]["id"]).offset({ top: _topO, left: _leftO });
+		$('#overviewImage' + json[i]["id"]).css('margin',(20+_topO)+'px '+(20+_leftO)+'px '+(20+_topO)+'px '+(20+_leftO)+'px ');//_topOpx _leftOpx _topOpx _leftOpx');
+
 		var id = 'content-' + json[i]["id"];
 		$('#contentainer').append('<div class="content" id="' + id + '"></div>');
 		$('#' + id).append('<a href="pics/' + json[i]["id"] + '.jpg" target="_blank"><img class="painting" id="pic-' + json[i]["id"] + '" src="pics/prev/' + json[i]["id"] + '.jpg"' + '></a>');
@@ -109,6 +161,25 @@ function createContent(){
         	left : width/2 - $('#name'+json[i]["id"]).outerWidth()/2
     	});
 	}
+	$('.overviewImages').click(function(){
+		currentPic = $(this).attr('data-index');
+		$(getCurrentId()).fadeTo(300,1);
+		console.log($(this));
+		console.log(".....->");
+		console.log($(getCurrentId()));
+		$('.arrow').css('display','block');
+		$('#overviewContent').fadeTo(200,0);
+		$('#overviewContent').css('zIndex',-1);
+		$('#overview').html("overfew");
+	});
+
+	$("#overviewInner").append('<div id="spacer">');
+	$("#spacer").outerWidth(width);
+	$("#spacer").outerHeight(90);
+	$("#spacer").css('float','left');
+	$("#spacer").css('position','relative');
+	// $("#spacer").css('background-color','#f0f');
+
 
 	var logo = $('<div id="logo">Ale&#353; Mal&yacute;<br></div>');
 	$('body').append(logo);
