@@ -47,6 +47,13 @@ p {
 	top: 20px;
 }
 
+.overname {
+	position: absolute;
+	font-size: 14px;
+	font-weight: 200;
+	z-index: 2000;
+}
+
 #logo {
 	position: absolute;
 	color: #000;
@@ -92,10 +99,12 @@ p {
 	font-size: 14px;
 	font-weight: 400;
 	overflow-y: auto;
-	overflow-x: auto;
+	overflow-x: hidden;
 	pointer-events: auto;
-	padding-top:30px;
-	padding-bottom:560px;
+	/*padding-top:30px;*/
+	/*padding-bottom:560px;*/
+	padding: 30px 0px 560px 0px;
+	margin:0px;
 }
 .overviewImages {
 	width: 100px;
@@ -108,7 +117,11 @@ p {
 	-moz-box-shadow: 10px 10px 67px -20px rgba(0,0,0,0.75);
 	box-shadow: 10px 10px 67px -20px rgba(0,0,0,0.75);
 	cursor: pointer;
+	opacity: 0.7;
 	/*margin:20px;*/
+}
+.paintingOverview {
+	pointer-events: none;
 }
 .gradient {
 	background-repeat: repeat-x;

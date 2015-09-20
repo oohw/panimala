@@ -107,7 +107,7 @@ function createContent(){
 	$('#overviewContent').append(overviewInner);
 	$('#overviewInner').height(height-60);
 	// aboutContent.css('overflow','auto');
-	$('#overviewInner').offset({left: width/2 - $('#overviewInner').outerWidth()/2 });
+	// $('#overviewInner').offset({left: width/2 - $('#overviewInner').outerWidth()/2 });
 	var gradientB = $('<div id="gradientBottom" class="gradient"></div>')
 	$('#overviewContent').append(gradientB);
 	var gradientT = $('<div id="gradientTop" class="gradient flipV"></div>')
@@ -125,8 +125,16 @@ function createContent(){
 		$('#overviewImage' + json[i]["id"]).outerHeight(hO);
 		$('#overview-pic-' + json[i]["id"]).outerWidth(wO-10);
 		$('#overview-pic-' + json[i]["id"]).outerHeight(hO-10);
-		// $('#overviewImage' + json[i]["id"]).offset({ top: _topO, left: _leftO });
 		$('#overviewImage' + json[i]["id"]).css('margin',(20+_topO)+'px '+(20+_leftO)+'px '+(20+_topO)+'px '+(20+_leftO)+'px ');//_topOpx _leftOpx _topOpx _leftOpx');
+		
+		var overname = $('<div id="overname' + json[i]["id"] + '" class="name overname"></div>');
+		$(overname).append('<p><nobr>' + htmlEntify(json[i]["name"]) + '</nobr></p>');
+    	$('#overviewInner').append(overname);
+		$('#overname'+json[i]["id"]).offset({
+        	left : $('#overviewImage' + json[i]["id"]).offset().left - ($('#overname'+json[i]["id"]).outerWidth()/2-50) - _leftO,
+        	top : $('#overviewImage' + json[i]["id"]).offset().top + 105 - _topO
+    	});
+    	$('#overname'+json[i]["id"]).hide();
 
 		var id = 'content-' + json[i]["id"];
 		$('#contentainer').append('<div class="content" id="' + id + '"></div>');
@@ -162,15 +170,27 @@ function createContent(){
     	});
 	}
 	$('.overviewImages').click(function(){
-		currentPic = $(this).attr('data-index');
+		currentPic = parseInt($(this).attr('data-index'));
 		$(getCurrentId()).fadeTo(300,1);
-		console.log($(this));
-		console.log(".....->");
-		console.log($(getCurrentId()));
 		$('.arrow').css('display','block');
 		$('#overviewContent').fadeTo(200,0);
 		$('#overviewContent').css('zIndex',-1);
 		$('#overview').html("overfew");
+	});
+	$('.overviewImages').mouseover(function(){
+		var idx = parseInt($(this).attr('data-index'));
+		if( !$('#overname' + json[idx]["id"]).is(':visible') ) {
+			$('#overname' + json[idx]["id"]).fadeIn('50');
+			$(this).fadeTo('100', 1.0);
+		}
+	});
+
+	$('.overviewImages').mouseout(function(){
+		var idx = parseInt($(this).attr('data-index'));
+		if( $('#overname' + json[idx]["id"]).is(':visible') ) {
+			$('#overname' + json[idx]["id"]).fadeOut('50');
+			$(this).fadeTo('100', 0.7);
+		}
 	});
 
 	$("#overviewInner").append('<div id="spacer">');
@@ -178,7 +198,6 @@ function createContent(){
 	$("#spacer").outerHeight(90);
 	$("#spacer").css('float','left');
 	$("#spacer").css('position','relative');
-	// $("#spacer").css('background-color','#f0f');
 
 
 	var logo = $('<div id="logo">Ale&#353; Mal&yacute;<br></div>');
@@ -249,6 +268,7 @@ function getCurrentId(){
 }
 
 function nextPic(direction){
+	var incremented = currentPic+1;
 	if(direction == -1){
 		return (currentPic+1)%json.length;
 	} else {
