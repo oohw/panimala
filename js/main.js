@@ -32,7 +32,7 @@ function init(){
 	});
 	$('#about').click(function(){
 		if(!interactionClosed)
-			if( $(getCurrentId()).css('opacity') > 0 ){
+			if( $('#aboutContent').css('opacity') <= 0 ){
 				$(getCurrentId()).fadeTo(200,0);
 				$('#overviewContent').fadeTo(200,0);
 				$('#overviewContent').css('zIndex',-1);
@@ -40,6 +40,7 @@ function init(){
 				$('#aboutContent').fadeTo(300,1);
 				$('#aboutContent').css('zIndex',1000);
 				$(this).html("zp&#283;t");
+				$('#overview').html(htmlEntify("Přehled prací"));
 			} else {
 				$(getCurrentId()).fadeTo(300,1);
 				$('.arrow').css('display','block');
@@ -51,7 +52,7 @@ function init(){
 
 	$('#overview').click(function(){
 		if(!interactionClosed)
-			if( $(getCurrentId()).css('opacity') > 0 ){
+			if( $('#overviewContent').css('opacity') <= 0 ){
 				$(getCurrentId()).fadeTo(200,0);
 				$('#aboutContent').fadeTo(200,0);
 				$('#aboutContent').css('zIndex',-1);
@@ -59,12 +60,13 @@ function init(){
 				$('#overviewContent').fadeTo(300,1);
 				$('#overviewContent').css('zIndex',1000);
 				$(this).html("zp&#283;t");
+				$('#about').html("O autorovi");
 			} else {
 				$(getCurrentId()).fadeTo(300,1);
 				$('.arrow').css('display','block');
 				$('#overviewContent').fadeTo(200,0);
 				$('#overviewContent').css('zIndex',-1);
-				$(this).html("overfew");
+				$(this).html(htmlEntify("Přehled prací"));
 			}
 	});
 	// createAvailableContent();
@@ -97,7 +99,7 @@ function layout(){
 
 function createContent(){
 
-	var overview = $('<div id="overview">overfew</div>');
+	var overview = $('<div id="overview">' + htmlEntify("Přehled prací") + '</div>');
 	$('body').append(overview);
 
 	var overviewContent = $('<div id="overviewContent"></div>');
@@ -175,7 +177,7 @@ function createContent(){
 		$('.arrow').css('display','block');
 		$('#overviewContent').fadeTo(200,0);
 		$('#overviewContent').css('zIndex',-1);
-		$('#overview').html("overfew");
+		$('#overview').html(htmlEntify("Přehled prací"));
 	});
 	$('.overviewImages').mouseover(function(){
 		var idx = parseInt($(this).attr('data-index'));
