@@ -11,7 +11,7 @@ $(document).ready(function() {
 	init();
 });
 $( window ).resize(function() {
-	layout();
+	resize();
 });
 
 function init(){
@@ -72,7 +72,7 @@ function init(){
 	// createAvailableContent();
 }
 
-function layout(){
+function resize(){
 	width = $(window).outerWidth();
 	height = $(window).outerHeight();
 	$('.content').css('display','block');
@@ -82,23 +82,26 @@ function layout(){
 		var h = scale * json[i]["prevsize"][1];
 		var _left = width/2 - w/2;
 		var _top = height/2 - h/2;
+		if(_left < 0)
+			console.log("width: " + width + " w: " + w + " _left: " + _left);
 		$('#pic-' + json[i]["id"]).outerWidth(w);
 		$('#pic-' + json[i]["id"]).outerHeight(h);
-		$('#pic-' + json[i]["id"]).offset({ top: _top, left: _left });
-
-		$('#name'+json[i]["id"]).offset({
-        	left : width/2 - $('#name'+json[i]["id"]).outerWidth()/2
-    	});
+		$('#pic-' + json[i]["id"]).css('top',_top+'px');
+		$('#pic-' + json[i]["id"]).css('left',_left+'px');
+		var nameleft = width/2 - $('#name'+json[i]["id"]).outerWidth()/2;
+		$('#name'+json[i]["id"]).css('left',nameleft+'px');
 	}
 	$('.content').css('display','none');
 	$(getCurrentId()).css('display','block');
 	$('#aboutContent').height(height-20);
-	$('#aboutContent').offset({left: width/2 - $('#aboutContent').outerWidth()/2 });
+	$('#aboutInner').height(height-20);
+	$('#aboutContent').width(width);
+	$('#aboutContent').css('left', (width/2 - $('#aboutContent').outerWidth()/2)+'px' );
+	$('#aboutInner').css('left', (width/2 - $('#aboutInner').outerWidth()/2)+'px' );
 	$('.arrow').offset({top: height/2 - 60 });
 }
 
 function createContent(){
-
 	var overview = $('<div id="overview">' + htmlEntify("Přehled prací") + '</div>');
 	$('body').append(overview);
 
